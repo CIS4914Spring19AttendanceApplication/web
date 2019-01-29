@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-page-not-found",
@@ -7,7 +6,6 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ["./page-not-found.component.css"]
 })
 export class PageNotFoundComponent implements OnInit {
-  faHome = faHome;
 
   constructor() {}
 

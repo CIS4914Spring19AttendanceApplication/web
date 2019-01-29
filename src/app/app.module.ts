@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { HomeComponent } from "./home/home.component";
 import { CallbackComponent } from "./callback/callback.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
@@ -18,7 +17,7 @@ import { APP_ROUTES } from './app.routes';
     HomeComponent,
     CallbackComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES), HttpModule, FormsModule, FontAwesomeModule, DashboardModule],
+  imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES), HttpModule, FormsModule, DashboardModule],
   providers: [],
   bootstrap: [AppComponent]
 })
