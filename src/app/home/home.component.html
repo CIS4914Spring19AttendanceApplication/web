@@ -3,17 +3,6 @@
     <h1 class="display-3">Roll Call</h1>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <p><a class="btn btn-primary btn-lg" (click)="auth.login()" role="button">{{loginMessage}} &raquo;</a></p>
-
-    <h4 *ngIf="!auth.isAuthenticated()">
-      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
-    </h4>
-
-    <h4 *ngIf="auth.isAuthenticated()">
-      You are logged in!
-       <a (click)="auth.logout()">Logout</a>
-    </h4>
-
-
   </div>
 </div>
 
