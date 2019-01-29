@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --aot --prod --build-optimizer",
-    "dev": "ng serve & nodemon ./bin/www"
+    "dev": "ng build --watch & ng serve & nodemon ./bin/www"
   },
   "private": true,
   "dependencies": {

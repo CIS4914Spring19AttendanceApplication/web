@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 import * as auth0 from "auth0-js";
+import { AUTH_CONFIG } from "./auth.config";
 
 @Injectable({
   providedIn: "root"
@@ -10,13 +11,14 @@ export class AuthService {
   private _idToken: string;
   private _accessToken: string;
   private _expiresAt: number;
+  userProfile: any;
 
   auth0 = new auth0.WebAuth({
-    clientID: "vLUp4WlFO18koNR9DGiBBlGmQARkbH3f",
-    domain: "rollcall-app.auth0.com",
+    clientID: AUTH_CONFIG.CLIENT_ID,
+    domain: AUTH_CONFIG.CLIENT_DOMAIN,
     responseType: "token id_token",
-    redirectUri: "http://localhost:3000/callback",
-    scope: "openid"
+    redirectUri: AUTH_CONFIG.REDIRECT,
+    scope: AUTH_CONFIG.SCOPE
   });
 
   constructor(public router: Router) {
@@ -42,9 +44,9 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.localLogin(authResult);
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/dashboard/home"]);
       } else if (err) {
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/"]);
         console.log(err);
       }
     });
@@ -88,5 +90,19 @@ export class AuthService {
     // Check whether the current time is past the
     // access token's expiry time
     return new Date().getTime() < this._expiresAt;
+  }
+
+  public getProfile(cb): void {
+    if (!this._accessToken) {
+      throw new Error("Access Token must exist to fetch profile");
+    }
+
+    const self = this;
+    this.auth0.client.userInfo(this._accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 }

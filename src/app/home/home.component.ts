@@ -7,13 +7,15 @@ import { AuthService } from "../auth/auth.service";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
+  loginMessage: string;
   constructor(public auth: AuthService) {
-    auth.handleAuthentication();
   }
 
   ngOnInit() {
-    if (localStorage.getItem("isLoggedIn") === "true") {
-      this.auth.renewTokens();
+    if (localStorage.getItem("isLoggedIn")) {
+      this.loginMessage = "Go to My Dashboard";
+    } else {
+      this.loginMessage = "Login";
     }
   }
 }
