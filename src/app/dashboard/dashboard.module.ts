@@ -5,9 +5,12 @@ import { HomeComponent } from "./home/home.component";
 import { RouterModule } from "@angular/router";
 import { dashboardRoutes } from "./dashboard.routes";
 import { ProfileComponent } from "./profile/profile.component";
+import { AuthGuard } from '../guards/auth-guard.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [LayoutComponent, HomeComponent, ProfileComponent],
-  imports: [CommonModule, RouterModule.forChild(dashboardRoutes)]
+  imports: [CommonModule, RouterModule.forChild(dashboardRoutes), FontAwesomeModule],
+  providers: [AuthGuard]
 })
 export class DashboardModule {}

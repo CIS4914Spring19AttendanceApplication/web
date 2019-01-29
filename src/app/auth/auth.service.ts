@@ -44,7 +44,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.localLogin(authResult);
-        this.router.navigate(["/dashboard/home"]);
+        this.router.navigate(["/dashboard"]);
       } else if (err) {
         this.router.navigate(["/"]);
         console.log(err);
