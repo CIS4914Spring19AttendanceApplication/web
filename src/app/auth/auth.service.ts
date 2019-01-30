@@ -16,7 +16,7 @@ export class AuthService {
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.CLIENT_ID,
     domain: AUTH_CONFIG.CLIENT_DOMAIN,
-    responseType: "token id_token",
+    responseType: "id_token",
     redirectUri: AUTH_CONFIG.REDIRECT,
     scope: AUTH_CONFIG.SCOPE
   });
