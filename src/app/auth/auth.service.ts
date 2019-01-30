@@ -12,6 +12,8 @@ export class AuthService {
   private _accessToken: string;
   private _expiresAt: number;
   userProfile: any;
+  returnUrl = '/dashboard';
+  returnUrlActive: boolean = false;
 
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.CLIENT_ID,
@@ -35,7 +37,7 @@ export class AuthService {
     return this._idToken;
   }
 
-  public login(): void {
+  public login(): void {  
     this.auth0.authorize();
   }
 
@@ -44,7 +46,13 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.localLogin(authResult);
-        this.router.navigate(["/dashboard"]);
+        if((localStorage.getItem('returnUrl'))){
+          this.returnUrl = localStorage.getItem('returnUrl');
+        } else {
+          this.returnUrl = '/dashboard';
+        }
+        localStorage.removeItem('returnUrl');
+        this.router.navigate([this.returnUrl]);
       } else if (err) {
         this.router.navigate(["/"]);
         console.log(err);

@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('isLoggedIn') === 'true' || this.auth.isAuthenticated()) {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
       this.auth.renewTokens();
       this.loginMessage = "Go to My Dashboard";
     } else {

@@ -9,13 +9,15 @@ import { CallbackComponent } from "./callback/callback.component";
 import { DashboardModule } from './dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     HomeComponent,
-    CallbackComponent
+    CallbackComponent,
+    LoginComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES), HttpModule, FormsModule, DashboardModule],
   providers: [],

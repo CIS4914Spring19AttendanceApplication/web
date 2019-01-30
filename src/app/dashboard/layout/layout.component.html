@@ -19,11 +19,14 @@
         </li>
       </ul>
       <div class="row">
+          <div class="col">
+              <button class="btn btn-outline-warning"  style="white-space: nowrap; text-align: center;" routerLink="/organizations/switch" type="submit">Switch Organizations</button>
+            </div>
         <div class="col">
-          <button class="btn btn-outline-info " routerLink="/dashboard/profile" type="submit">Profile</button>
+          <button class="btn btn-outline-success " routerLink="/dashboard/profile" type="submit">Profile</button>
         </div>
         <div class="col">
-          <button class="btn btn-outline-success" (click)="auth.logout()" type="submit">Logout</button>
+          <button class="btn btn-danger" (click)="auth.logout()" type="submit">Logout</button>
         </div>
       </div>
     </div>
