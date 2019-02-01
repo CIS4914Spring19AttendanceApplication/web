@@ -4,6 +4,7 @@ import * as auth0 from "auth0-js";
 import { AUTH_CONFIG } from "./auth.config";
 import { SharedDataService } from "../shared-data.service";
 import { UserService } from "../api/user.service";
+import { resolve } from "q";
 
 @Injectable({
   providedIn: "root"
@@ -52,12 +53,46 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.localLogin(authResult);
-        this.userService.onBoardCheck(authResult.idTokenPayload.name);
-        if (localStorage.getItem("returnUrl")) {
-          this.returnUrl = localStorage.getItem("returnUrl");
-        } else {
-          this.returnUrl = "/dashboard";
-        }
+
+        this.userService
+          .onBoardCheck(authResult.idTokenPayload.name)
+          .toPromise()
+          .then(data => {
+            if (localStorage.getItem("returnUrl")) {
+              this.returnUrl = localStorage.getItem("returnUrl");
+              this.router.navigate([this.returnUrl]);
+
+            } else {
+              this.returnUrl = "/dashboard";
+              this.router.navigate([this.returnUrl]);
+
+            }
+
+            console.log('dOne!');
+          }).catch(err => {
+             this.returnUrl = "/register";
+             this.router.navigate([this.returnUrl]);
+
+
+          });
+        console.log("I will not wait until promise is resolved..");
+
+        // this.userService
+        // .onBoardCheck(authResult.idTokenPayload.name)
+        // .toPromise()
+        // .then(res => {
+        //   if (res.status == 200) {
+        //     if (localStorage.getItem("returnUrl")) {
+        //       this.returnUrl = localStorage.getItem("returnUrl");
+        //     } else {
+        //       this.returnUrl = "/dashboard";
+        //     }
+        //   } else {
+        //     console.log('not found');
+        //   }
+
+        // });
+
         localStorage.removeItem("returnUrl");
         this.router.navigate([this.returnUrl]);
       } else if (err) {
@@ -76,6 +111,7 @@ export class AuthService {
     this._idToken = authResult.idToken;
     this._expiresAt = expiresAt;
     this.sharedData.accessToken = this._accessToken;
+    this.sharedData.email = authResult.idTokenPayload.name;
   }
 
   public renewTokens(): void {

@@ -7,5 +7,6 @@ export class SharedDataService {
 
   constructor() { }
   public accessToken: any;
+  public email: string;
 
 }
