@@ -4,8 +4,8 @@ const getHost = () => {
   const host = window.location.host;
   return `${protocol}//${host}`;
 };
-console.log(_isDev);
-const apiURI = 'https://rollcall-api.herokuapp.com/api';
+
+const apiURI = _isDev ? 'https://rollcall-api.herokuapp.com/api' : `http://localhost:8080/api`;
 
 export const ENV = {
   BASE_URI: getHost(),
