@@ -20,7 +20,8 @@ export class AuthService {
     domain: AUTH_CONFIG.CLIENT_DOMAIN,
     responseType: "token id_token",
     redirectUri: AUTH_CONFIG.REDIRECT,
-    scope: AUTH_CONFIG.SCOPE
+    scope: AUTH_CONFIG.SCOPE,
+    audience: AUTH_CONFIG.AUDIENCE
   });
 
   constructor(
