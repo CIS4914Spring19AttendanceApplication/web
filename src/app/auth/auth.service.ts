@@ -51,7 +51,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.localLogin(authResult);
-
+        console.log(authResult);
         this.userService.onBoardCheck(authResult.idTokenPayload.name);
         if (localStorage.getItem("returnUrl")) {
           this.returnUrl = localStorage.getItem("returnUrl");
