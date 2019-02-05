@@ -60,41 +60,22 @@ export class AuthService {
           .then(data => {
             if (localStorage.getItem("returnUrl")) {
               this.returnUrl = localStorage.getItem("returnUrl");
-              this.router.navigate([this.returnUrl]);
 
             } else {
               this.returnUrl = "/dashboard";
-              this.router.navigate([this.returnUrl]);
-
             }
-
-            console.log('dOne!');
-          }).catch(err => {
+            this.router.navigate([this.returnUrl]);
+          })
+          .then(res => {
+            localStorage.removeItem("returnUrl");
+            this.router.navigate([this.returnUrl]);
+          })
+          .catch(err => {
              this.returnUrl = "/register";
              this.router.navigate([this.returnUrl]);
 
-
           });
-        console.log("I will not wait until promise is resolved..");
-
-        // this.userService
-        // .onBoardCheck(authResult.idTokenPayload.name)
-        // .toPromise()
-        // .then(res => {
-        //   if (res.status == 200) {
-        //     if (localStorage.getItem("returnUrl")) {
-        //       this.returnUrl = localStorage.getItem("returnUrl");
-        //     } else {
-        //       this.returnUrl = "/dashboard";
-        //     }
-        //   } else {
-        //     console.log('not found');
-        //   }
-
-        // });
-
-        localStorage.removeItem("returnUrl");
-        this.router.navigate([this.returnUrl]);
+        
       } else if (err) {
         this.router.navigate(["/"]);
         console.log(err);
@@ -135,7 +116,13 @@ export class AuthService {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem("isLoggedIn");
     // Go back to the home route
-    this.router.navigate(["/"]);
+    this.userService.logOut().toPromise()
+    .then(data => {
+      this.router.navigate(["/"]);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 
   public isAuthenticated(): boolean {

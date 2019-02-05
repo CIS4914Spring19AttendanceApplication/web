@@ -14,6 +14,7 @@ import { UserService } from './api/user.service';
 import { AuthService } from './auth/auth.service';
 import { SharedDataService } from './shared-data.service';
 import { TokenInterceptor } from './token-interceptor.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TokenInterceptor } from './token-interceptor.service';
     PageNotFoundComponent,
     HomeComponent,
     CallbackComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES), HttpClientModule, DashboardModule],
   providers: [UserService, AuthService, SharedDataService, {

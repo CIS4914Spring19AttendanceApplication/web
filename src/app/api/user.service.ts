@@ -15,4 +15,8 @@ export class UserService {
   public onBoardCheck(email: string) {
     return this.http.get(ENV.BASE_API + "/user/onboardcheck/" + email, {observe: 'response'});
   }
+
+  public logOut() {
+    return this.http.get("https://rollcall-app.auth0.com/v2/logout");
+  }
 }
