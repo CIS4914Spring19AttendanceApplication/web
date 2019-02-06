@@ -11,11 +11,11 @@ app.use(bodyParser.json());
 app.use(express.static('./dist/rollcall-web'));
 app.use('/*', express.static('dist/rollcall-web/index.html'));
 
-setInterval(function() {
-    http.get("http://rollcall-webapp.herokuapp.com");
-    var d = new Date();
-    console.log("Keep-alive: " + d.getMonth() + "/" +d.getDate() + " | " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
-}, 900000); 
+// setInterval(function() {
+//     http.get("http://rollcall-webapp.herokuapp.com");
+//     var d = new Date();
+//     console.log("Keep-alive: " + d.getMonth() + "/" +d.getDate() + " | " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+// }, 900000); 
 
 app.use((req, res, next) => {
   res.header('Access-Allow-Control-Origin', '*');
