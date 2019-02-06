@@ -17,6 +17,6 @@ export class UserService {
   }
 
   public logOut() {
-    return this.http.get("https://rollcall-app.auth0.com/v2/logout");
+    return this.http.get("https://rollcall-app.auth0.com/v2/logout", {observe: 'response'});
   }
 }
