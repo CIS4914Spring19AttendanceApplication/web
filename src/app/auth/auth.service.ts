@@ -5,6 +5,8 @@ import { AUTH_CONFIG } from "./auth.config";
 import { SharedDataService } from "../shared-data.service";
 import { UserService } from "../api/user.service";
 import { resolve } from "q";
+import { environment } from "src/environments/environment";
+import { ENV } from "../core/env.config";
 
 @Injectable({
   providedIn: "root"
@@ -60,7 +62,6 @@ export class AuthService {
           .then(data => {
             if (localStorage.getItem("returnUrl")) {
               this.returnUrl = localStorage.getItem("returnUrl");
-
             } else {
               this.returnUrl = "/dashboard";
             }
@@ -71,11 +72,9 @@ export class AuthService {
             this.router.navigate([this.returnUrl]);
           })
           .catch(err => {
-             this.returnUrl = "/register";
-             this.router.navigate([this.returnUrl]);
-
+            this.returnUrl = "/register";
+            this.router.navigate([this.returnUrl]);
           });
-        
       } else if (err) {
         this.router.navigate(["/"]);
         console.log(err);
@@ -116,12 +115,9 @@ export class AuthService {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem("isLoggedIn");
     // Go back to the home route
-    this.userService.logOut().toPromise()
-    .then(data => {
-      this.router.navigate(["/"]);
-    })
-    .catch(error => {
-      console.log(error);
+    this.auth0.logout({
+      returnTo: ENV.BASE_URI,
+      client_id: AUTH_CONFIG.CLIENT_ID
     });
   }
 
