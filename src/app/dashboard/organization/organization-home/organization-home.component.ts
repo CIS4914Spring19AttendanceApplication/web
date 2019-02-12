@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from 'src/app/shared-data.service';
 
 @Component({
   selector: 'fmyp-organization-home',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizationHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sharedData: SharedDataService) { }
 
   ngOnInit() {
   }

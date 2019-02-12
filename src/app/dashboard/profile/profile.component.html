@@ -1,1 +1,55 @@
-
+<fmyp-dashboard-header [title]="sharedData.profileTitle" [description]="sharedData.profileDesc" ></fmyp-dashboard-header>
+<div class="container">
+	<div class="d-flex justify-content-center" *ngIf="userProfileLoading">
+		<div  class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div *ngIf="updateSuccess" class="alert alert-success" role="alert1">
+				Profile has been successfully updated!
+			</div>
+			<div  *ngIf="updateError" class="alert alert-danger" role="alert2">
+				Error in updating profile, please contact an administrator.
+			</div>
+			<form *ngIf="!userProfileLoading" class="form-signin" (ngSubmit)="updateProfile()" #registerForm="ngForm">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="">First and Last Name</span>
+				</div>
+				<input type="text" class="form-control" placeholder="First Name" name="first_name" [(ngModel)]="user.first_name" required>
+				<input type="text" class="form-control" placeholder="Last Name"  name="last_name" [(ngModel)]="user.last_name" required>
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="email">Email</label>
+				</div>
+				<input type="text" class="form-control" placeholder="{{user.email}}" readonly required>
+			</div>
+			<label for="year" class="sr-only">Year</label>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="year">Year</label>
+				</div>
+				<select class="custom-select" id="year"  name="year" [(ngModel)]="user.year" required>
+				<option selected disabled>Choose Year</option>
+				<option value="Freshman">Freshman</option>
+				<option value="Sophomore">Sophomore</option>
+				<option value="Junior">Junior</option>
+				<option value="Senior">Senior</option>
+				<option value="Graduate">Graduate</option>
+				</select>
+			</div>
+			<button class="btn btn-lg btn-success btn-block" type="submit">Save Changes</button>
+			</form>
+		</div>
+		<div *ngIf="enrollmentsLength > 0" class="col">
+			<ul *ngIf="!userProfileLoading" class="list-group">
+				<li class="list-group-item active"><b>Organization Enrollments</b></li>
+				<li *ngFor="let org of enrollments" class="list-group-item">{{org.organization}}</li>
+					
+			</ul>
+		</div>
+	</div>
+</div>
