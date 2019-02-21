@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedDataService } from 'src/app/shared-data.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,11 +8,10 @@ import { SharedDataService } from 'src/app/shared-data.service';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(public sharedData: SharedDataService) {
+  constructor(public auth: AuthService) {
   }
 
   ngOnInit() {
-    console.log(this.sharedData.accessToken)
   }
 
 }
