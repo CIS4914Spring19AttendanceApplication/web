@@ -50,14 +50,17 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
+    console.log('1');
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
+        console.log('2');
 
         this.userService
           .onBoardCheck(authResult.idTokenPayload.name)
           .toPromise()
           .then(data => {
+            console.log('3');
             if (localStorage.getItem("returnUrl")) {
               this.returnUrl = localStorage.getItem("returnUrl");
               localStorage.removeItem("returnUrl");
@@ -67,10 +70,12 @@ export class AuthService {
             this.router.navigate([this.returnUrl]);
           })
           .catch(err => {
+            console.log('4');
             this.returnUrl = "/register";
             this.router.navigate([this.returnUrl]);
           });
       } else if (err) {
+        console.log('5');
         this.router.navigate(["/"]);
         console.log(err);
       }
