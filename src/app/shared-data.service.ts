@@ -5,14 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SharedDataService {
 
-  constructor() { 
-  }
-  public organizationTitle = 'Organizations';
-  public organizationDesc = 'Create, edit or view organizations you are currently managing.';
-  public profileTitle = 'My Profile';
-  public profileDesc = 'Edit or view your profile.';
+  constructor() { }
   public accessToken: any;
   public email: string;
-  
 
 }
