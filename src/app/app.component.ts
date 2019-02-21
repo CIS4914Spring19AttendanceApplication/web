@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Router, RouterStateSnapshot } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -7,8 +6,7 @@ import { Router, RouterStateSnapshot } from "@angular/router";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

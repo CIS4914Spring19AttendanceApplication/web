@@ -1,24 +1,50 @@
-<fmyp-organization-header></fmyp-organization-header>
+<fmyp-dashboard-header [title]="sharedData.organizationTitle" [description]="sharedData.organizationDesc" ></fmyp-dashboard-header>
 <div class="container">
-  <h3>Create New Organization</h3>
-  <form>
-    <div class="form-group">
-      <label for="name">Organization Name</label>
-      <input type="text" class="form-control" id="name" required />
+  <div class="row">
+    <div class="col">
+        <h3>Create New Organization</h3>
+        <div *ngIf="errorDisplay" class="alert alert-danger" role="alert1">
+            {{errorMessage}}
+          </div>
+        <form>
+            <div class="form-group">
+              <label for="name">Organization Name</label>
+              <input type="text" class="form-control" [(ngModel)]="orgName" id="name"  [ngModelOptions]="{standalone: true}" required autofocus />
+            </div>
+        
+            <div class="mb-3 custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" (click)="toggleCat()" [(ngModel)]="pointCatBool" [ngModelOptions]="{standalone: true}" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Point Categories</label>
+              </div>
+        
+            <button type="submit" class="btn btn-success" (click)="createOrg()">Create Organization</button>
+          </form>
     </div>
+    <div *ngIf="pointCatBool" class="col">
+        <h3>Point Categories</h3>
+        <ul *ngIf="pointCats.length > 0" class="list-group mb-4">
+            <li *ngFor="let pCat of pointCats"class="list-group-item d-flex justify-content-between align-items-center">
+              {{pCat.name}}
+              <span class="badge badge-primary badge-pill">{{pCat.value}}</span>
+            </li>
+          </ul>
+          <label for="name">Add Category</label>
+        <form #pointCatForm="ngForm" (ngSubmit)="addCat()">
+        <div class="input-group mb-3">
 
-    <div class="form-group row">
-      <div class="col">
-        <label for="alterEgo">Point Category</label>
-        <input type="text" class="form-control" id="alterEgo" />
-      </div>
-      <div class="col">
-        <label for="alterEgo">Point Value</label>
-        <input type="text" class="form-control" id="alterEgo" />
-      </div>
-      <button type="submit" class="btn btn-success">Add</button>
-    </div>
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="">Name & Point</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Name" name="pointName" [(ngModel)]="pointName"  #name="ngModel" required>
+            <input type="number" class="form-control" placeholder="Point"  name="pointValue" [(ngModel)]="pointValue"   #name="ngModel" required>
+          </div>
+          <button type="submit" class="btn btn-success float-right">Add</button>
+        </form>
+          <!-- <div *ngIf="pCatValError" style="color: red;">Please fill out both fields.</div> -->
 
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+
+     
+      </div>
+  </div>
+  
 </div>

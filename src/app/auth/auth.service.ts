@@ -16,7 +16,6 @@ export class AuthService {
   private _accessToken: string;
   private _expiresAt: number;
   returnUrl = "/dashboard";
-  returnUrlActive: boolean = false;
 
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.CLIENT_ID,
@@ -53,7 +52,6 @@ export class AuthService {
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = "";
         this.localLogin(authResult);
 
         this.userService
@@ -62,13 +60,10 @@ export class AuthService {
           .then(data => {
             if (localStorage.getItem("returnUrl")) {
               this.returnUrl = localStorage.getItem("returnUrl");
+              localStorage.removeItem("returnUrl");
             } else {
               this.returnUrl = "/dashboard";
             }
-            this.router.navigate([this.returnUrl]);
-          })
-          .then(res => {
-            localStorage.removeItem("returnUrl");
             this.router.navigate([this.returnUrl]);
           })
           .catch(err => {

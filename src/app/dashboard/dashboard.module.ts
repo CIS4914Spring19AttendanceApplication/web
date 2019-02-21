@@ -7,13 +7,13 @@ import { dashboardRoutes } from "./dashboard.routes";
 import { ProfileComponent } from "./profile/profile.component";
 import { AuthGuard } from '../guards/auth-guard.service';
 import { OrganizationHomeComponent } from './organization/organization-home/organization-home.component';
-import { OrganizationHeaderComponent } from './organization/organization-header/organization-header.component';
 import { CreateOrganizationComponent } from './organization/create-organization/create-organization.component';
-import { ViewProfileComponent } from './profile/view-profile/view-profile.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [LayoutComponent, HomeComponent, ProfileComponent, OrganizationHomeComponent, OrganizationHeaderComponent, CreateOrganizationComponent, ViewProfileComponent],
-  imports: [CommonModule, RouterModule.forChild(dashboardRoutes)],
+  declarations: [LayoutComponent, HomeComponent, ProfileComponent, OrganizationHomeComponent, DashboardHeaderComponent, CreateOrganizationComponent, ProfileComponent],
+  imports: [CommonModule, RouterModule.forChild(dashboardRoutes), FormsModule],
   providers: [AuthGuard]
 })
 export class DashboardModule {}
