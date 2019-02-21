@@ -16,7 +16,6 @@ export class AuthService {
   private _accessToken: string;
   private _expiresAt: number;
   returnUrl = "/dashboard";
-  returnUrlActive: boolean = false;
 
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.CLIENT_ID,
@@ -51,36 +50,27 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
-    console.log('1');
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = "";
         this.localLogin(authResult);
-        console.log('2');
 
         this.userService
           .onBoardCheck(authResult.idTokenPayload.name)
           .toPromise()
           .then(data => {
-            console.log('3');
             if (localStorage.getItem("returnUrl")) {
               this.returnUrl = localStorage.getItem("returnUrl");
+              localStorage.removeItem("returnUrl");
             } else {
               this.returnUrl = "/dashboard";
             }
             this.router.navigate([this.returnUrl]);
           })
-          .then(res => {
-            localStorage.removeItem("returnUrl");
-            this.router.navigate([this.returnUrl]);
-          })
           .catch(err => {
-            console.log('4');
             this.returnUrl = "/register";
             this.router.navigate([this.returnUrl]);
           });
       } else if (err) {
-        console.log('5');
         this.router.navigate(["/"]);
         console.log(err);
       }
