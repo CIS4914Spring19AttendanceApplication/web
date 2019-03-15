@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  user = { first_name: null, last_name: null, email: this.sharedData.email, year: 'Choose Year'};
+  user = { first_name: null, last_name: null, email: this.sharedData.email, year: 'Choose Year', phone: null};
 
   ngOnInit() {
     if(!this.sharedData.email){

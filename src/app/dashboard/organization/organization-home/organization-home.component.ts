@@ -31,9 +31,9 @@ export class OrgEnrollDialog {
 })
 export class OrganizationHomeComponent implements OnInit {
 
-  private enrollments: any;
-  private enrollrows: Number;
-  private qr_code: string;
+  public enrollments: any;
+  public enrollrows: Number;
+  public qr_code: string;
   constructor(public sharedData: SharedDataService, public orgService: OrgService, public user: UserService, public dialog: MatDialog) { }
 
    openDialog(org): void {
