@@ -53,7 +53,6 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
-
         this.userService
           .onBoardCheck(authResult.idTokenPayload.name)
           .toPromise()

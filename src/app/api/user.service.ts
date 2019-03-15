@@ -36,4 +36,8 @@ export class UserService {
   public updateProfile(body) {
     return this.http.post(this.baseUserURL + "update", body);
   }
+
+  public getEnrollments(email: string){
+    return this.http.get(this.baseUserURL + 'get/enrollments/' + email);
+  }
 }

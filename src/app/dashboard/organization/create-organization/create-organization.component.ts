@@ -41,7 +41,8 @@ export class CreateOrganizationComponent implements OnInit {
   createOrg() {
     this.formBody = {
       name: this.orgName,
-      point_categories: this.pointCats
+      point_categories: this.pointCats,
+      email: this.sharedData.email
     };
     this.orgService
       .createEvent(this.formBody)

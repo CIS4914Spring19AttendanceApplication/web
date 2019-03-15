@@ -18,4 +18,10 @@ export class OrgService {
       observe: "response"
     });
   }
+
+  public getOrgQR(orgName){
+    return this.http.get(this.baseUserURL + "qr/" + orgName);
+  }
+
+
 }

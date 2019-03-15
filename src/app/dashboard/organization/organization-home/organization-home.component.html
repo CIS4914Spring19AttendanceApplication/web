@@ -1,44 +1,29 @@
 <fmyp-dashboard-header [title]="sharedData.organizationTitle" [description]="sharedData.organizationDesc" ></fmyp-dashboard-header>
 <div class="row" style="padding-left: 5em; padding-right:5em;">
-  <div class="row">
-    <button type="button" href="#" routerLink="/dashboard/organizations/create" class="btn btn-success btn-lg" style="margin:15px;">Create Organization</button>
-  </div>
-  <div class="row" >
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="row">
+		<button type="button" href="#" routerLink="/dashboard/organizations/create" class="btn btn-success btn-lg" style="margin:15px;">Create Organization</button>
+	</div>
+	<div class="row">
+		<div class="col-4" style="padding-bottom: 20px;" *ngFor="let org of enrollments">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">{{org.organization}}</h5>
+					<p class="card-text">
+						Some quick example text to build on the card title and make up the
+						bulk of the card's content.
+					</p>
+					<div class="row">
+						<div class="col">
+							<a href="#" class="btn btn-warning btn-block">Activate</a>
+						</div>
+						<div class="col">
+							<button class="btn btn-outline-success btn-block" (click)="openDialog(org)" >Enroll</button>
+						</div>
+						<div class="col">
+							<a href="#" class="btn btn-outline-primary btn-block">Edit</a>
+						</div>
+					</div>				</div>
+			</div>
+		</div>
+	</div>
 </div>

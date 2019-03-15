@@ -20,6 +20,12 @@
     </div>
 		<input type="text" class="form-control" placeholder="{{user.email}}" readonly required>
   </div>
+    <div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<label class="input-group-text" for="phone">Phone</label>
+    </div>
+		<input type="text" class="form-control" placeholder="Phone Number" name="phone" [(ngModel)]="user.phone" required>
+  </div>
 	<label for="year" class="sr-only">Year</label>
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">

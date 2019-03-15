@@ -11,8 +11,11 @@ export class SharedDataService {
   public organizationDesc = 'Create, edit or view organizations you are currently managing.';
   public profileTitle = 'My Profile';
   public profileDesc = 'Edit or view your profile.';
+  public eventsTitle = 'Events';
+  public eventsDesc = 'Create, edit or view your events for {{organization name here}}.';
   public accessToken: any;
   public email: string;
+  public activeOrg: any;
   
 
 }

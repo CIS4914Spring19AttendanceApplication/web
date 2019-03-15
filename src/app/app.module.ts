@@ -24,7 +24,7 @@ import { RegisterComponent } from './register/register.component';
     CallbackComponent,
     LoginComponent,
     RegisterComponent
-  ],
+      ],
   imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES), HttpClientModule, DashboardModule, FormsModule],
   providers: [UserService, AuthService, SharedDataService, {
     provide: HTTP_INTERCEPTORS,
