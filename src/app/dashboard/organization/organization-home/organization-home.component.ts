@@ -56,7 +56,7 @@ export class OrganizationHomeComponent implements OnInit {
 
   ngOnInit() {
     this.user
-      .getEnrollments(this.sharedData.email)
+      .getBoardEnrollments(this.sharedData.email)
       .toPromise()
       .then(doc => {
         this.enrollments = doc;

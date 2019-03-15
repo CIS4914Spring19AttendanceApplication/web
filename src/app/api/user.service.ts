@@ -40,4 +40,8 @@ export class UserService {
   public getEnrollments(email: string){
     return this.http.get(this.baseUserURL + 'get/enrollments/' + email);
   }
+
+  public getBoardEnrollments(email: string){
+    return this.http.get(this.baseUserURL + 'get/boardenrollments/' + email);
+  }
 }
