@@ -5,7 +5,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { OrgService } from 'src/app/api/org.service';
 
 export interface OrgEnrollData {
-  org: string;
+  name: string;
   qr_code: string;
 }
 
