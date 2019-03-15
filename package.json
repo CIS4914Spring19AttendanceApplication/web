@@ -1,6 +1,6 @@
 {
-  "name": "keenthemes",
-  "version": "1.0",
+  "name": "rollcall-web",
+  "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
   "engines": {
