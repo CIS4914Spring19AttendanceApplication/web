@@ -1,3 +1,123 @@
-<p>
-  create-event works!
-</p>
+<fmyp-dashboard-header [title]="sharedData.eventsTitle" [description]="sharedData.eventsDesc" ></fmyp-dashboard-header>
+<div class="container">
+<h3>Create New Event</h3>
+<form class="mt-4" (submit)="createEvent();" #registerForm="ngForm">
+<div *ngIf="errorDisplay" class="alert alert-danger" role="alert1">
+	{{errorMessage}}
+</div>
+<h5>Basic Event Details</h5>
+<div class="form-row">
+	<div class="col-md-5">
+		<label for="name">Event Name</label>
+		<input type="text" class="form-control" [(ngModel)]="name" name="name" required autofocus />
+	</div>
+	<div class="col-md-5">
+		<label for="name">Location</label>
+		<input type="text" class="form-control" ngx-google-places-autocomplete [options]="options" #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+	</div>
+	<div class="col-md-2" *ngIf="locationenforce">
+		<div class="col">
+			<label for="radius">Location Radius</label>
+			<select class="custom-select float-right" id="radius" name="radius" [(ngModel)]="radius" style="width: 150px;" (change)="handleRadiusChange($event.target.value)">
+			<option value="0.0094697" >50 feet</option>
+			<option value="0.0189394">100 feet</option>
+			<option value="0.0473485"selected>250 feet</option>
+			<option value="0.094697" >500 feet</option>
+			<option value="0.189394">1000 feet</option>
+			<option value="0.25">0.25 miles</option>
+			<option value="0.5">0.5 miles</option>
+			<option value="0.75">0.75 miles</option>
+			<option value="1">1 mile</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="form-row mt-1 mb-3">
+	<div class="col-md-6">
+		<label for="name">Date</label>
+		<div class="input-group">
+			<input class="form-control" placeholder="yyyy-mm-dd"
+			name="date" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+			</div>
+		</div>
+		<button class="btn btn-sm btn-outline-primary" type="button" style="margin-top: 10px; margin-bottom: 10px;" (click)="selectToday();">Today</button>
+	</div>
+	<div class="col-md-6">
+		<label for="name">Time</label>
+		<ngb-timepicker [(ngModel)]="time" name="time" [meridian]="meridian" [spinners]="spinners"></ngb-timepicker>
+	</div>
+</div>
+<h5>Additional Event Details</h5>
+<div class="form-row mb-3">
+	<div class="col-md-6">
+		<label for="name">Point Categories</label>
+		<select class="custom-select" [(ngModel)]="selectedCategories" name="selectedCategories" multiple>
+		<option *ngFor="let category of categories" [value]="category" >
+		{{category}}
+		</option>
+		</select>
+		<button class="btn btn-sm btn-outline-danger"  type="button" style="margin-top: 10px; margin-bottom: 10px;" (click)="clearSelections();">Clear Selections</button>
+	</div>
+	<div class="col-md-6">
+		<ul *ngIf="questions.length > 0" class="list-group mt-1 mb-1">
+			<li *ngFor="let question of questions"class="list-group-item d-flex justify-content-between align-items-center">
+				{{question}}
+				<span (click)="removeQuestion(question)" class="badge badge-danger badge-pill">X</span>
+			</li>
+		</ul>
+		<div *ngIf="questionsBool" class="form-row">
+			<div class="col">
+				<label for="question">Question</label>
+				<input class="form-control" type="text" [(ngModel)]="question" name="question" id="question">
+				<button class="btn mt-3 btn-sm btn-success float-right" (click)="addQuestion()" type="submit">Add Question</button>
+			</div>
+		</div>
+	</div>
+</div>
+<h5>Attendance Settings</h5>
+<div class="form-row mb-3">
+	<div class="col">
+		<div class="custom-control custom-switch mb-1 form-row">
+			<div class="col">
+				<input type="checkbox" class="custom-control-input" (click)="toggleAttendance()" [(ngModel)]="checkin" name="checkin" id="checkin">
+				<label class="custom-control-label" for="checkin">Allow Check In</label>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="custom-control custom-switch form-row">
+			<div class="col">
+				<input type="checkbox" class="custom-control-input" (click)="enforceLocation()" [(ngModel)]="locationenforce" name="locationenforce" id="locationenforce">
+				<label class="custom-control-label" for="locationenforce">Enforce Location</label>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="custom-control custom-switch m">
+			<div class="col">
+				<input type="checkbox" class="custom-control-input" (click)="toggleQuestions()" [(ngModel)]="questionsBool" name="questionsBool" id="questionswitch">
+				<label class="custom-control-label" for="questionswitch">Enable Questions</label>
+			</div>
+		</div>
+	</div>
+</div>
+<h5 *ngIf="locationenforce">Map</h5>
+<div class="form-row " *ngIf="locationenforce">
+	<agm-map 
+	[latitude]="lat"
+	[longitude]="lng"
+	[zoom]="18"
+	[disableDefaultUI]="true"
+	[zoomControl]="false">
+	<agm-circle [latitude]="lat" [longitude]="lng" 
+	[radius]="radiusMeters"
+	[fillColor]="yellow"
+	[circleDraggable]="false"
+	[editable]="false">
+	</agm-circle>
+	</agm-map>
+</div>
+<button class="btn mt-3 btn-md btn-success" type="submit">Create Event</button>
+</form>

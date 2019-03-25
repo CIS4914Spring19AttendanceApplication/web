@@ -63,7 +63,19 @@ export class AuthService {
             } else {
               this.returnUrl = "/dashboard";
             }
-            this.router.navigate([this.returnUrl]);
+            this.userService.getActiveOrg()
+            .toPromise()
+            .then(data => {
+              
+              console.log(data[0].organization);
+              this.sharedData.activeOrg = data[0].organization;
+              this.router.navigate([this.returnUrl]);
+
+            })
+            .catch(err => {
+              this.sharedData.activeOrg = null;
+              this.router.navigate([this.returnUrl]);
+            });
           })
           .catch(err => {
             this.returnUrl = "/register";
@@ -86,6 +98,9 @@ export class AuthService {
     this._expiresAt = expiresAt;
     this.sharedData.accessToken = this._accessToken;
     this.sharedData.email = authResult.idTokenPayload.name;
+    this.sharedData.activeOrg = localStorage.getItem('activeOrg');
+    localStorage.removeItem('activeOrg');
+
   }
 
   public renewTokens(): void {

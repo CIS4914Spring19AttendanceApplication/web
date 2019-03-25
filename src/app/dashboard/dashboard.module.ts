@@ -5,21 +5,49 @@ import { HomeComponent } from "./home/home.component";
 import { RouterModule } from "@angular/router";
 import { dashboardRoutes } from "./dashboard.routes";
 import { ProfileComponent } from "./profile/profile.component";
-import { AuthGuard } from '../guards/auth-guard.service';
-import { OrganizationHomeComponent, OrgEnrollDialog } from './organization/organization-home/organization-home.component';
-import { CreateOrganizationComponent } from './organization/create-organization/create-organization.component';
-import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
-import { FormsModule } from '@angular/forms';
-import { EventHomeComponent } from './event/event-home/event-home.component';
-import { CreateEventComponent } from './event/create-event/create-event.component';
-import { ViewEventComponent } from './event/view-event/view-event.component';
-import { MatDialog, MatDialogModule } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { AuthGuard } from "../guards/auth-guard.service";
+import {
+  OrganizationHomeComponent,
+  OrgEnrollDialog
+} from "./organization/organization-home/organization-home.component";
+import { CreateOrganizationComponent } from "./organization/create-organization/create-organization.component";
+import { DashboardHeaderComponent } from "./dashboard-header/dashboard-header.component";
+import { FormsModule } from "@angular/forms";
+import { EventHomeComponent } from "./event/event-home/event-home.component";
+import { CreateEventComponent } from "./event/create-event/create-event.component";
+import { ViewEventComponent } from "./event/view-event/view-event.component";
+import { MatDialog, MatDialogModule } from "@angular/material";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { AgmCoreModule } from "@agm/core";
 
 @NgModule({
-  declarations: [LayoutComponent, HomeComponent, ProfileComponent, OrganizationHomeComponent, DashboardHeaderComponent, CreateOrganizationComponent, ProfileComponent, EventHomeComponent, CreateEventComponent, ViewEventComponent, OrgEnrollDialog],
-  imports: [CommonModule, RouterModule.forChild(dashboardRoutes), FormsModule, MatDialogModule, BrowserAnimationsModule],
+  declarations: [
+    CreateEventComponent,
+    LayoutComponent,
+    HomeComponent,
+    ProfileComponent,
+    OrganizationHomeComponent,
+    DashboardHeaderComponent,
+    CreateOrganizationComponent,
+    ProfileComponent,
+    EventHomeComponent,
+    ViewEventComponent,
+    OrgEnrollDialog
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(dashboardRoutes),
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    GooglePlaceModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBeJeprKc32pOu3u4gcvUCkVV_CEYnqO5Y"
+    })
+  ],
   providers: [AuthGuard, MatDialog],
   entryComponents: [OrgEnrollDialog]
 })

@@ -33,19 +33,40 @@ export class OrganizationHomeComponent implements OnInit {
   public enrollments: any;
   public enrollrows: Number;
   public qr_code: string;
+  public orgsLoading = true;
+  public enrollLoading = false;
+  public activateLoading = false;
+
   constructor(
     public sharedData: SharedDataService,
     public orgService: OrgService,
     public user: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
+  activateOrg(org): void{
+    this.activateLoading = true;
+    var body = {org_name: org.organization, user_email: this.sharedData.email};
+    this.user
+    .activateOrg(body)
+    .toPromise()
+    .then(doc => {
+      this.activateLoading = false;
+      this.sharedData.activeOrg = org.organization;
+      location.reload();
+    })
+    .catch(err => {
+
+    })
+  }
+
   openDialog(org): void {
+    this.enrollLoading = true;
     this.orgService
       .getOrgQR(org.organization)
       .toPromise()
       .then(doc => {
-        console.log(doc);
+        this.enrollLoading = false;
         const dialogRef = this.dialog.open(OrgEnrollDialog, {
           width: "500px",
           data: { name: org.organization, qr_code: doc }
@@ -60,9 +81,11 @@ export class OrganizationHomeComponent implements OnInit {
       .toPromise()
       .then(doc => {
         this.enrollments = doc;
-        console.log(this.enrollments);
-        this.enrollrows = Math.ceil(this.enrollments.length / 3);
-        console.log(this.enrollrows);
+        // console.log(this.enrollments);
+        // this.enrollrows = Math.ceil(this.enrollments.length / 3);
+        // console.log(this.enrollrows);
+        this.orgsLoading = false;
+
       })
       .catch(err => {});
   }

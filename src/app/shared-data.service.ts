@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,11 @@ export class SharedDataService {
   public profileTitle = 'My Profile';
   public profileDesc = 'Edit or view your profile.';
   public eventsTitle = 'Events';
-  public eventsDesc = 'Create, edit or view your events for {{organization name here}}.';
   public accessToken: any;
   public email: string;
-  public activeOrg: any;
+  public activeOrg: string;
+  public eventsDesc = 'Create, edit or view your events for ' + this.activeOrg + '.';
+
   
 
 }

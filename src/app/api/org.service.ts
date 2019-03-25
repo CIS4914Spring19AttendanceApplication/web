@@ -20,8 +20,15 @@ export class OrgService {
   }
 
   public getOrgQR(orgName){
-    return this.http.get(this.baseUserURL + "qr/" + orgName);
+    return this.http.get(this.baseUserURL + "get/qr/" + orgName);
   }
+
+  public getPointCategories(orgName){
+    return this.http.get(this.baseUserURL + "get/pointcategories/" + orgName);
+  }
+
+
+
 
 
 }

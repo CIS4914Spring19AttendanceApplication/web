@@ -52,10 +52,12 @@ export class CreateOrganizationComponent implements OnInit {
       })
       .catch(err => {
         console.log(err);
-        if(err.status == 500) {
+        if (err.status == 500) {
           this.errorMessage = "Please fill out all fields";
           this.errorDisplay = true;
         } else {
+          console.log("not500");
+          this.errorDisplay = true;
           this.errorMessage = err.error.message;
         }
       });

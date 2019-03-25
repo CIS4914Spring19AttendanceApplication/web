@@ -23,8 +23,7 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     CallbackComponent,
     LoginComponent,
-    RegisterComponent
-      ],
+    RegisterComponent      ],
   imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES), HttpClientModule, DashboardModule, FormsModule],
   providers: [UserService, AuthService, SharedDataService, {
     provide: HTTP_INTERCEPTORS,

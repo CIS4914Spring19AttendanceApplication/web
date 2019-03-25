@@ -14,7 +14,7 @@ export class UserService {
   ) {}
 
   public onBoardCheck(email: string) {
-    return this.http.get(this.baseUserURL + "/onboardcheck/" + email, {
+    return this.http.get(this.baseUserURL + "onboardcheck/" + email, {
       observe: "response"
     });
   }
@@ -43,5 +43,14 @@ export class UserService {
 
   public getBoardEnrollments(email: string){
     return this.http.get(this.baseUserURL + 'get/boardenrollments/' + email);
+  }
+
+  public activateOrg(body){
+    return this.http.post(this.baseUserURL + "set/activeorg", body);
+
+  }
+
+  public getActiveOrg(){
+    return this.http.get(this.baseUserURL + 'get/activeorg/' + this.sharedData.email);
   }
 }
