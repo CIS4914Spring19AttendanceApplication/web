@@ -34,6 +34,7 @@ export class CreateEventComponent implements OnInit {
   radius: any = 0.0473485;
   formBody: any;
   selectedCategories: {};
+  spinners: false;
 
   
   constructor(

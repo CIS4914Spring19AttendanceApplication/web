@@ -2,9 +2,9 @@
 <div class="container">
 <h3>Create New Event</h3>
 <form class="mt-4" (submit)="createEvent();" #registerForm="ngForm">
-<div *ngIf="errorDisplay" class="alert alert-danger" role="alert1">
+<!--<div *ngIf="errorDisplay" class="alert alert-danger" role="alert1">
 	{{errorMessage}}
-</div>
+</div>-->
 <h5>Basic Event Details</h5>
 <div class="form-row">
 	<div class="col-md-5">
@@ -13,7 +13,7 @@
 	</div>
 	<div class="col-md-5">
 		<label for="name">Location</label>
-		<input type="text" class="form-control" ngx-google-places-autocomplete [options]="options" #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+		<input type="text" class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
 	</div>
 	<div class="col-md-2" *ngIf="locationenforce">
 		<div class="col">
