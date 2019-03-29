@@ -33,9 +33,10 @@ export class CreateOrganizationComponent implements OnInit {
   ngOnInit() {}
 
   addCat() {
-    this.pointCats.push({ name: this.pointName, value: this.pointValue });
+    this.pointCats.push({ name: this.pointName, points: this.pointValue });
     this.pointName = null;
     this.pointValue = null;
+    console.log(this.pointCats);
   }
 
   createOrg() {

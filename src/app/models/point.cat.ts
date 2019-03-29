@@ -1,6 +1,6 @@
 class PointCat {
     
     name: string;
-    value: number;
+    points: number;
 
 }
