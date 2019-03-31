@@ -2,9 +2,17 @@ import { Component, OnInit } from "@angular/core";
 import { SharedDataService } from "src/app/shared-data.service";
 import { NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
 import { OrgService } from "src/app/api/org.service";
-import { AgmCircle } from '@agm/core';
-import { EventService } from 'src/app/api/event.service';
+import { AgmCircle } from "@agm/core";
+import { EventService } from "src/app/api/event.service";
 
+class PointCatEvent {
+  name: string;
+  
+}
+
+class AdditionalQuestions {
+  question: string;
+}
 
 @Component({
   selector: "fmyp-create-event",
@@ -13,7 +21,7 @@ import { EventService } from 'src/app/api/event.service';
 })
 export class CreateEventComponent implements OnInit {
   public name: any;
-  public location: any;
+  public location: string;
   public time: any;
   public categories: any;
   public date: any;
@@ -21,10 +29,11 @@ export class CreateEventComponent implements OnInit {
   public currentTime: any;
   public minutes: Number;
   public questionsBool = false;
-  public questions: any = [];
-  public question: String;
+  public questions: AdditionalQuestions[] = new Array<AdditionalQuestions>();
+  public question: string;
   public checkin = true;
   public locationenforce = false;
+  public pointCats: PointCatEvent[] = new Array<PointCatEvent>();
   //public options = { types: ['geocode'] };
   lat: any;
   lng: any;
@@ -33,10 +42,10 @@ export class CreateEventComponent implements OnInit {
   radiusMeters: any;
   radius: any = 0.0473485;
   formBody: any;
-  selectedCategories: {};
+  selectedCategories: [];
   spinners: false;
+  location_address: String;
 
-  
   constructor(
     public sharedData: SharedDataService,
     private calendar: NgbCalendar,
@@ -54,6 +63,8 @@ export class CreateEventComponent implements OnInit {
       minute: this.minutes,
       spinners: false
     };
+
+
     this.orgService
       .getPointCategories(this.sharedData.activeOrg)
       .toPromise()
@@ -63,10 +74,9 @@ export class CreateEventComponent implements OnInit {
       .catch(err => {});
   }
 
-
-  addQuestion(){
-    if(this.question != null){
-      this.questions.push(this.question);
+  addQuestion() {
+    if (this.question != null) {
+      this.questions.push({ question: this.question });
       this.question = null;
     }
     console.log(this.questions);
@@ -76,19 +86,18 @@ export class CreateEventComponent implements OnInit {
     !this.questionsBool;
   }
 
-  toggleAttendance(){
+  toggleAttendance() {
     this.checkin = !this.checkin;
-
   }
 
-  enforceLocation(){
+  enforceLocation() {
     this.locationenforce = !this.locationenforce;
     console.log(this.lat);
     console.log(this.lng);
   }
 
   clearSelections() {
-    this.selectedCategories = {};
+    this.selectedCategories = [];
   }
 
   removeQuestion(currentQuestion) {
@@ -96,58 +105,78 @@ export class CreateEventComponent implements OnInit {
   }
 
   createEvent() {
+    // this.dateObj = Date.parse(this.date.year + "-" + this.date.month + "-" + this.date.day)
+    console.log(this.date.day);
+    console.log(this.time.hour);
+    console.log(this.time.minute);
+    console.log(this.date.month);
+    console.log(this.date.year);
+
+    var dateObj = new Date(
+      this.date.year,
+      this.date.month,
+      this.date.day,
+      this.time.hour,
+      this.time.minute,
+      0,
+      0
+    );
+    console.log(dateObj.toTimeString());
+
+    for (var cat of this.selectedCategories) {
+      this.pointCats.push({ name: cat });
+    }
 
     this.formBody = {
       name: this.name,
-      location: this.location,
-      date: this.date,
-      time: this.time,
+      org_id: this.sharedData.activeOrgID,
+      date: dateObj,
       categories: this.categories,
       questionsBool: this.questionsBool,
       questions: this.questions,
       checkin: this.checkin,
       location_enforce: this.locationenforce,
-      lat: this.lat,
-      lng: this.lng,
+      location_lat: this.lat,
+      location_lng: this.lng,
+      location: this.location,
+      location_address: this.location_address,
       location_radius: this.radiusMeters,
-      org_name: this.sharedData.activeOrg
+      org_name: this.sharedData.activeOrg,
+      point_categories: this.pointCats,
+      created_by: this.sharedData.email,
+      additional_fields: this.questions,
+      attendance_toggle: this.checkin
     };
 
-    this.eventService.createEvent(this.formBody)
-    .toPromise()
-    .then(document => {
+    this.eventService
+      .createEvent(this.formBody)
+      .toPromise()
+      .then(document => {
         console.log(document);
-    })
-    .catch(err => {
-      console.log(err);
-
-    });
-    
-
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   selectToday() {
     this.date = this.calendar.getToday();
+    console.log(this.date);
   }
 
   public handleAddressChange(address) {
     this.lat = address.geometry.location.lat();
     this.lng = address.geometry.location.lng();
-    this.center = this.lat + ', ' + this.lng;
+    this.center = this.lat + ", " + this.lng;
     this.radiusMeters = this.radius * 1609.344;
-    console.log(this.radiusMeters);
-
+    this.location = address.name;
+    this.location_address = address.formatted_address;
   }
 
   public handleRadiusChange(newRadius) {
-    
     this.lat = this.lat;
     this.lng = this.lng;
     this.radius = newRadius;
-    console.log(newRadius);
-
     this.radiusMeters = this.radius * 1609.344;
-    
-
   }
 }

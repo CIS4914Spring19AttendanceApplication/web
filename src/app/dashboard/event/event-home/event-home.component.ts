@@ -21,6 +21,7 @@ export class EventHomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.sharedData.activeOrgID);
     this.event
       .getActiveEvents(this.sharedData.activeOrg)
       .toPromise()

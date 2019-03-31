@@ -67,8 +67,9 @@ export class AuthService {
             .toPromise()
             .then(data => {
               
-              console.log(data[0].organization);
+              console.log(data[0]);
               this.sharedData.activeOrg = data[0].organization;
+              this.sharedData.activeOrgID = data[0].organization_id;
               this.router.navigate([this.returnUrl]);
 
             })
@@ -100,6 +101,8 @@ export class AuthService {
     this.sharedData.email = authResult.idTokenPayload.name;
     this.sharedData.activeOrg = localStorage.getItem('activeOrg');
     localStorage.removeItem('activeOrg');
+    this.sharedData.activeOrg = localStorage.getItem('activeOrgID');
+    localStorage.removeItem('activeOrgID');
 
   }
 

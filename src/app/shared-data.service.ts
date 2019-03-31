@@ -16,6 +16,7 @@ export class SharedDataService {
   public accessToken: any;
   public email: string;
   public activeOrg: string;
+  public activeOrgID: string;
   public eventsDesc = 'Create, edit or view your events for ' + this.activeOrg + '.';
 
   

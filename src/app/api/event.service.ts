@@ -17,7 +17,7 @@ export class EventService {
   }
 
   public createEvent(event){
-    return this.http.post(this.baseUserURL+ "/create", event, {
+    return this.http.post(this.baseUserURL+ "create", event, {
       observe: "response" 
     });
   }
