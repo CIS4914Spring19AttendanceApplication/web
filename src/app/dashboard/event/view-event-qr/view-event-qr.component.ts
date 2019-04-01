@@ -10,7 +10,7 @@ import { EventService } from 'src/app/api/event.service';
 export class ViewEventQrComponent implements OnInit {
 
   private id: string;
-  private qr: any;
+  qr: any;
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
   ngOnInit() {
