@@ -9,7 +9,7 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "heroku-postbuild": "ng build --aot --prod --build-optimizer",
-        "dev": "ng build --watch & ng serve & nodemon ./bin/www"
+        "dev": "ng serve --aot"
     },
     "engines": {
         "node": "10.15.0",
@@ -22,7 +22,7 @@
         "@angular/cdk": "^7.3.4",
         "@angular/common": "~7.2.0",
         "@angular/compiler": "~7.2.0",
-        "@angular/core": "~7.2.0",
+        "@angular/core": "^7.2.9",
         "@angular/forms": "^7.2.2",
         "@angular/http": "^7.2.2",
         "@angular/material": "^7.3.4",
@@ -30,6 +30,7 @@
         "@angular/platform-browser-dynamic": "~7.2.0",
         "@angular/router": "~7.2.0",
         "@ng-bootstrap/ng-bootstrap": "^4.1.0",
+        "ajv": "^6.10.0",
         "auth0-js": "^9.10.0",
         "body-parser": "^1.18.3",
         "bootstrap": "^4.2.1",
@@ -38,10 +39,11 @@
         "express": "^4.16.4",
         "http": "0.0.0",
         "http-errors": "^1.7.1",
-        "jquery": "^3.3.1",
+        "js-yaml": "^3.13.0",
         "ng2-charts": "^2.2.2",
         "ngx-google-places-autocomplete": "^2.0.3",
         "popper": "^1.0.1",
+        "popper.js": "^1.14.7",
         "rxjs": "^6.3.3",
         "tslib": "^1.9.0",
         "zone.js": "~0.8.26"

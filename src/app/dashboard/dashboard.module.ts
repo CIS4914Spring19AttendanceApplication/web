@@ -16,7 +16,7 @@ import { FormsModule } from "@angular/forms";
 import { EventHomeComponent } from "./event/event-home/event-home.component";
 import { CreateEventComponent } from "./event/create-event/create-event.component";
 import { ViewEventComponent } from "./event/view-event/view-event.component";
-import { MatDialog, MatDialogModule } from "@angular/material";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
