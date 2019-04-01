@@ -53,4 +53,8 @@ export class UserService {
   public getActiveOrg(){
     return this.http.get(this.baseUserURL + 'get/activeorg/' + this.sharedData.email);
   }
+
+  public getEventMemberAnalytics(eventID) {
+    return this.http.get(this.baseUserURL + 'get/byevent/' + eventID);
+  }
 }

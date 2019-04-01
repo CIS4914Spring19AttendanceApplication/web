@@ -1,3 +1,37 @@
-<p>
-  event-analytics works!
-</p>
+<fmyp-dashboard-header [title]="sharedData.aTitle" [description]="sharedData.aDesc" ></fmyp-dashboard-header>
+<div class="container">
+<h3>Members Attended</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+
+      <th scope="col">Year</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of attended">
+      <td>{{member.first_name}}</td>
+      <td>{{member.last_name}}</td>
+      <td>{{member.email}}</td>
+            <td>{{member.phone}}</td>
+      <td>{{member.year}}</td>
+
+    </tr>
+  </tbody>
+</table>
+<h3 style="padding-top: 25px;">Year Breakdown</h3>
+
+<div style="display: block">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"></canvas>
+</div>
+
+
+</div>

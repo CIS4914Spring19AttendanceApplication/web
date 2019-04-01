@@ -23,6 +23,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from "@agm/core";
 import { ViewEventQrComponent } from './event/view-event-qr/view-event-qr.component';
 import { EventAnalyticsComponent } from './analytics/event-analytics/event-analytics.component';
+import { AnalyticsHomeComponent } from './analytics/analytics-home/analytics-home.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { EventAnalyticsComponent } from './analytics/event-analytics/event-analy
     ViewEventComponent,
     OrgEnrollDialog,
     ViewEventQrComponent,
-    EventAnalyticsComponent
+    EventAnalyticsComponent,
+    AnalyticsHomeComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ import { EventAnalyticsComponent } from './analytics/event-analytics/event-analy
     BrowserAnimationsModule,
     NgbModule,
     GooglePlaceModule,
+    ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBeJeprKc32pOu3u4gcvUCkVV_CEYnqO5Y"
     })

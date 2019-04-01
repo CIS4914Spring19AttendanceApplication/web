@@ -9,6 +9,7 @@ import { EventHomeComponent } from "./event/event-home/event-home.component";
 import { CreateEventComponent } from "./event/create-event/create-event.component";
 import { ViewEventComponent } from "./event/view-event/view-event.component";
 import { EventAnalyticsComponent } from './analytics/event-analytics/event-analytics.component';
+import { AnalyticsHomeComponent } from './analytics/analytics-home/analytics-home.component';
 
 export const dashboardRoutes: Routes = [
   {
@@ -24,6 +25,7 @@ export const dashboardRoutes: Routes = [
       { path: "events/create", component: CreateEventComponent },
       { path: "events/view/:id", component: ViewEventComponent },
       { path: "events/create", component: CreateEventComponent },
+      {path: "analytics", component: AnalyticsHomeComponent},
       {path: "analytics/event/:id", component: EventAnalyticsComponent}
 
     ]

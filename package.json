@@ -39,7 +39,9 @@
         "http": "0.0.0",
         "http-errors": "^1.7.1",
         "jquery": "^3.3.1",
+        "ng2-charts": "^2.2.2",
         "ngx-google-places-autocomplete": "^2.0.3",
+        "popper": "^1.0.1",
         "rxjs": "^6.3.3",
         "tslib": "^1.9.0",
         "zone.js": "~0.8.26"
