@@ -16,6 +16,7 @@ export class AnalyticsHomeComponent implements OnInit {
   public eventrows: Number;
   public qr_code: string;
   qrLoading: boolean;
+  public navigateUrl; 
 
   ngOnInit() {
     console.log(this.sharedData.activeOrg);
@@ -30,8 +31,11 @@ export class AnalyticsHomeComponent implements OnInit {
       .catch(err => {});
   }
 
-  openEventAnalytics() {
-    this.router.navigate(['/dashboard']);
+  openEventAnalytics(event) {
+    console.log('yes');
+    this.navigateUrl = '/dashboard/analytics/event/' + event._id;
+    console.log(this.navigateUrl);
+    this.router.navigate([this.navigateUrl]);
   }
 
 }
