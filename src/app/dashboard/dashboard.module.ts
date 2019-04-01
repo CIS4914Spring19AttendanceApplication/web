@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from "@agm/core";
+import { ViewEventQrComponent } from './event/view-event-qr/view-event-qr.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AgmCoreModule } from "@agm/core";
     ProfileComponent,
     EventHomeComponent,
     ViewEventComponent,
-    OrgEnrollDialog
+    OrgEnrollDialog,
+    ViewEventQrComponent
   ],
   imports: [
     CommonModule,

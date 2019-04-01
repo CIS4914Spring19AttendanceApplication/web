@@ -14,16 +14,18 @@ export class EventHomeComponent implements OnInit {
   public events: any;
   public eventrows: Number;
   public qr_code: string;
+  qrLoading: boolean;
   constructor(
     public sharedData: SharedDataService,
-    public event: EventService,
+    public eventService: EventService,
     public dialog: MatDialog,
   ) {}
 
   ngOnInit() {
+    console.log(this.sharedData.activeOrg);
     console.log(this.sharedData.activeOrgID);
-    this.event
-      .getActiveEvents(this.sharedData.activeOrg)
+    this.eventService
+      .getEventsByOrg(this.sharedData.activeOrg)
       .toPromise()
       .then(doc => {
         this.events = doc.body;
@@ -31,5 +33,10 @@ export class EventHomeComponent implements OnInit {
       })
       .catch(err => {});
   }
+
+  openEventQRView(event) {
+    window.open("/event/view/qr/" + event._id, "_blank");
+  }
+
 }
 

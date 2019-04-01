@@ -53,6 +53,7 @@ export class OrganizationHomeComponent implements OnInit {
     .then(doc => {
       this.activateLoading = false;
       this.sharedData.activeOrg = org.organization;
+      this.sharedData.activeOrgID = org._id;
       location.reload();
     })
     .catch(err => {

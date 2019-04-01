@@ -3,24 +3,28 @@
 <div class="row">
 	<button type="button" href="#" routerLink="/dashboard/events/create" class="btn btn-success btn-lg" style="margin:15px;">Create Event</button>
 </div>
+
 <div class="row">
-	<div class="col-4" style="padding-bottom: 20px;" *ngFor="let event of events">
+	<div class="col-6" style="padding-bottom: 20px;" *ngFor="let event of events">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">{{org.organization}}</h5>
+				<h5 class="card-title">{{event.name}}</h5>
 				<p class="card-text">
 					Some quick example text to build on the card title and make up the
 					bulk of the card's content.
 				</p>
 				<div class="row">
-					<div class="col" *ngIf="!org.active">
-						<a  class="btn btn-warning btn-block" (click)="activateOrg(org)">Activate</a>
+					<div class="col">
+						<button class="btn btn-outline-success btn-block" (click)="openEventQRView(event)" >Check In QR Code</button>
+					</div>
+							<div class="col">
+						<button class="btn btn-outline-success btn-block" (click)="openEventQRView(event)" >Turn Attendance On</button>
 					</div>
 					<div class="col">
-						<button class="btn btn-outline-success btn-block" (click)="openDialog(org)" >Enroll</button>
+						<button class="btn btn-outline-success btn-block" (click)="openDialog(org)" >Edit</button>
 					</div>
 					<div class="col">
-						<a  class="btn btn-outline-primary btn-block">Edit</a>
+						<button class="btn btn-outline-success btn-block" (click)="openDialog(org)" >Delete</button>
 					</div>
 				</div>
 			</div>

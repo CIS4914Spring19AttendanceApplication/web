@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './callback/callback.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ViewEventQrComponent } from './dashboard/event/view-event-qr/view-event-qr.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ export const APP_ROUTES: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: "event/view/qr/:id", component: ViewEventQrComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

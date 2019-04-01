@@ -10,7 +10,7 @@ export class EventService {
   baseUserURL: string = ENV.BASE_API + "/event/";
   constructor(private http: HttpClient, public sharedData: SharedDataService) {}
 
-  public getActiveEvents(orgName) {
+  public getEventsByOrg(orgName) {
     return this.http.get(this.baseUserURL + "get/byorg/" + orgName, {
       observe: "response"
     });
@@ -19,6 +19,12 @@ export class EventService {
   public createEvent(event){
     return this.http.post(this.baseUserURL+ "create", event, {
       observe: "response" 
+    });
+  }
+
+  public getEventQRCode(eventID){
+    return this.http.get(this.baseUserURL+ "get/qr/" + eventID, {
+      observe: "response"
     });
   }
 

@@ -23,6 +23,7 @@ export const dashboardRoutes: Routes = [
       { path: "events/create", component: CreateEventComponent },
       { path: "events/view/:id", component: ViewEventComponent },
       { path: "events/create", component: CreateEventComponent }
+
     ]
   }
 ];

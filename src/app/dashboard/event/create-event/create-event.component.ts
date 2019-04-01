@@ -4,6 +4,7 @@ import { NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
 import { OrgService } from "src/app/api/org.service";
 import { AgmCircle } from "@agm/core";
 import { EventService } from "src/app/api/event.service";
+import { Router } from '@angular/router';
 
 class PointCatEvent {
   name: string;
@@ -50,7 +51,8 @@ export class CreateEventComponent implements OnInit {
     public sharedData: SharedDataService,
     private calendar: NgbCalendar,
     private orgService: OrgService,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -122,10 +124,12 @@ export class CreateEventComponent implements OnInit {
       0
     );
     console.log(dateObj.toTimeString());
-
-    for (var cat of this.selectedCategories) {
-      this.pointCats.push({ name: cat });
+    if(this.selectedCategories != undefined || this.selectedCategories != null) {
+      for (var cat of this.selectedCategories) {
+        this.pointCats.push({ name: cat });
+      }
     }
+  
 
     this.formBody = {
       name: this.name,
@@ -152,7 +156,8 @@ export class CreateEventComponent implements OnInit {
       .createEvent(this.formBody)
       .toPromise()
       .then(document => {
-        console.log(document);
+        this.router.navigate(['/dashboard/events']);
+
       })
       .catch(err => {
         console.log(err);
