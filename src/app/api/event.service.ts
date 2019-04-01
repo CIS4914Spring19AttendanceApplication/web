@@ -28,4 +28,10 @@ export class EventService {
     });
   }
 
+  public getEventName(eventID){
+    return this.http.get(this.baseUserURL+ "get/name/" + eventID, {
+      observe: "response"
+    }); 
+  }
+
 }

@@ -1,5 +1,9 @@
 <fmyp-dashboard-header [title]="sharedData.aTitle" [description]="sharedData.aDesc" ></fmyp-dashboard-header>
 <div class="container">
+<div *ngIf="eventNameLoaded">
+<h2>{{eventName.name}}</h2>
+</div>
+
 <h3>Members Attended</h3>
 <table class="table">
   <thead>
