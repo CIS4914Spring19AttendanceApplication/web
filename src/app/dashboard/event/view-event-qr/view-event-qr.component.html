@@ -1,3 +1,16 @@
-<img [src]="qr.qr_code" alt="Enroll QR Code" width=400px; style="padding: 10px;   display: block;
-  margin-left: auto;
-  margin-right: auto;"/>
+<div class="container" style="padding-top: 100px;">
+	<div class="d-flex justify-content-center" *ngIf="loading">
+		<div  class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	<div *ngIf="!loading" style="text-align: center;">
+		<h4>Roll Call</h4>
+		<h2 style="padding-top: 10px;">{{qr.org_name}} - {{qr.name}}</h2>
+    		<h5>Scan with mobile app to sign in!</h5>
+
+	<img [src]="qr.qr_code" alt="Enroll QR Code" width=400px; style="padding: 10px;   display: block;
+		margin-left: auto;
+		margin-right: auto;"/>
+	<button type="button" class="btn mt-3 btn-md btn-outline-primary" (click)="closeWindow();">Close</button>
+</div>	</div>

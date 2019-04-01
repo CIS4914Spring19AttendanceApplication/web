@@ -11,19 +11,24 @@ export class ViewEventQrComponent implements OnInit {
 
   private id: string;
   qr: any;
+  loading: boolean = true;
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.eventService.getEventQRCode(this.id).toPromise()
     .then(doc => {
-      console.log(doc);
-     this.qr = doc.body;
+      this.loading = false;
+      this.qr = doc.body;
     })
     .catch(err => {
 
     });
 
+ }
+
+ closeWindow(){
+   window.close();
  }
 
 }

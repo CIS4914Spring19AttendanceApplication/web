@@ -110,7 +110,7 @@ export class AuthService {
     this.auth0.checkSession({}, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
-      } else if (err) {
+      } else if (err) { 
         // alert(
         //   `Could not get a new token (${err.error}: ${err.error_description}).`
         // );
