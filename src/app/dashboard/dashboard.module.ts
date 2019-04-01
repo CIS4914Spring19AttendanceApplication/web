@@ -22,6 +22,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from "@agm/core";
 import { ViewEventQrComponent } from './event/view-event-qr/view-event-qr.component';
+import { EventAnalyticsComponent } from './analytics/event-analytics/event-analytics.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ViewEventQrComponent } from './event/view-event-qr/view-event-qr.compon
     EventHomeComponent,
     ViewEventComponent,
     OrgEnrollDialog,
-    ViewEventQrComponent
+    ViewEventQrComponent,
+    EventAnalyticsComponent
   ],
   imports: [
     CommonModule,
