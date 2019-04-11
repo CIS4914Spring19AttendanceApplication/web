@@ -4,32 +4,32 @@
     <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="/dashboard" href="#">Dashboard <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="events" >Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard/analytics">Analytics</a>
-        </li>
-       <!-- <li class="nav-item">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="events">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/organizations">Organizations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/analytics">Analytics</a>
+            </li>
+            <!-- <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
         -->
-      </ul>
-      <div class="row">
-          <div class="col">
-              <button class="btn btn-outline-warning"  style="white-space: nowrap; text-align: center;" routerLink="/dashboard/organizations" type="submit">Organizations</button>
+        </ul>
+        <div class="row">
+            <!-- <div class="col">
+                <button class="btn btn-outline-warning" style="white-space: nowrap; text-align: center;" routerLink="/dashboard/organizations" type="submit">Organizations</button>
+            </div> -->
+            <div class="col">
+                <button class="btn btn-outline-success " routerLink="/dashboard/profile" type="submit">Profile</button>
             </div>
-        <div class="col">
-          <button class="btn btn-outline-success " routerLink="/dashboard/profile" type="submit">Profile</button>
+            <div class="col">
+                <button class="btn btn-danger" (click)="auth.logout()" type="submit">Logout</button>
+            </div>
         </div>
-        <div class="col">
-          <button class="btn btn-danger" (click)="auth.logout()" type="submit">Logout</button>
-        </div>
-      </div>
     </div>
-  </nav>
-  <router-outlet></router-outlet>
+</nav>
+<router-outlet></router-outlet>

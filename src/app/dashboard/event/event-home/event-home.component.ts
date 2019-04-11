@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { SharedDataService } from 'src/app/shared-data.service';
-import { UserService } from 'src/app/api/user.service';
-import { MatDialog } from '@angular/material';
-import { EventService } from 'src/app/api/event.service';
+import { Component, OnInit } from "@angular/core";
+import { SharedDataService } from "src/app/shared-data.service";
+import { UserService } from "src/app/api/user.service";
+import { MatDialog } from "@angular/material";
+import { EventService } from "src/app/api/event.service";
 
 @Component({
-  selector: 'fmyp-event-home',
-  templateUrl: './event-home.component.html',
-  styleUrls: ['./event-home.component.css']
+  selector: "fmyp-event-home",
+  templateUrl: "./event-home.component.html",
+  styleUrls: ["./event-home.component.css"]
 })
 export class EventHomeComponent implements OnInit {
-
   public events: any;
   public eventrows: Number;
   public qr_code: string;
@@ -18,7 +17,7 @@ export class EventHomeComponent implements OnInit {
   constructor(
     public sharedData: SharedDataService,
     public eventService: EventService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -38,5 +37,20 @@ export class EventHomeComponent implements OnInit {
     window.open("/event/view/qr/" + event._id, "_blank");
   }
 
+  toggleAttendance(event) {
+    this.eventService
+      .toggleEventAttendance(event._id)
+      .toPromise()
+      .then(doc => {
+        this.eventService
+        .getEventsByOrg(this.sharedData.activeOrg)
+        .toPromise()
+        .then(doc => {
+          this.events = doc.body;
+          console.log(this.events);
+        })
+        .catch(err => {});
+      })
+      .catch(err => {});
+  }
 }
-

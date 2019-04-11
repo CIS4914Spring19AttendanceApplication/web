@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventService {
   baseUserURL: string = ENV.BASE_API + "/event/";
+  
   constructor(private http: HttpClient, public sharedData: SharedDataService) {}
 
   public getEventsByOrg(orgName) {
@@ -32,6 +33,21 @@ export class EventService {
     return this.http.get(this.baseUserURL+ "get/name/" + eventID, {
       observe: "response"
     }); 
+  }
+
+  public toggleEventAttendance(eventID){
+    var event = {
+      _id: eventID
+    };
+    return this.http.post(this.baseUserURL+ "toggleAttendance", event, {
+      observe: "response"
+    }); 
+  }
+
+  public getCheckInResponses(eventID){
+    return this.http.get(this.baseUserURL+ "get/checkin/responses/" + eventID, {
+      observe: "response"
+    });
   }
 
 }

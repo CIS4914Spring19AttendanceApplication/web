@@ -1,41 +1,65 @@
-<fmyp-dashboard-header [title]="sharedData.aTitle" [description]="sharedData.aDesc" ></fmyp-dashboard-header>
+<fmyp-dashboard-header [title]="sharedData.aTitle" [description]="sharedData.aDesc"></fmyp-dashboard-header>
 <div class="container">
-<div *ngIf="eventNameLoaded">
-<h2>{{eventName.name}}</h2>
-</div>
+    <div *ngIf="eventNameLoaded" class="mb-5">
+        <h1>{{event.name}}</h1>
+    </div>
+    <h3>Members Attended</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
 
-<h3>Members Attended</h3>
+                <th scope="col">Year</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of attended">
+                <td>{{member.first_name}}</td>
+                <td>{{member.last_name}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.phone}}</td>
+                <td>{{member.year}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div *ngIf="fields != undefined">
+<h3>Member Responses</h3>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Email</th>
-            <th scope="col">Phone</th>
+      <div *ngFor="let field of fields">
+            <th scope="col" *ngFor="let question of field.additional_fields">{{question.question}}</th>
 
-      <th scope="col">Year</th>
-
+      </div>
+    
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let member of attended">
-      <td>{{member.first_name}}</td>
-      <td>{{member.last_name}}</td>
-      <td>{{member.email}}</td>
-            <td>{{member.phone}}</td>
-      <td>{{member.year}}</td>
+            <div *ngFor="let field of fields">  
+      <tr>
+      <td scope="col">{{field.first_name}}</td>
+      <td scope="col">{{field.last_name}}</td>
+      <td scope="col" *ngFor="let question of field.additional_fields">{{question.answer}}</td>
 
+    
     </tr>
+          </div>
+
   </tbody>
 </table>
-<h3 style="padding-top: 25px;">Year Breakdown</h3>
+</div> -->
+    <h3 style="padding-top: 25px;">Year Breakdown</h3>
 
-<div style="display: block">
-  <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"></canvas>
-</div>
+    <div style="display: block">
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
+    </div>
 
 
 </div>

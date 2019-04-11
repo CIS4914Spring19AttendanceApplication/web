@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { SharedDataService } from "src/app/shared-data.service";
 import { EventService } from "src/app/api/event.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/api/user.service";
-import { ChartsModule } from "ng2-charts";
 
 @Component({
   selector: "fmyp-event-analytics",
@@ -12,32 +11,46 @@ import { ChartsModule } from "ng2-charts";
 })
 export class EventAnalyticsComponent implements OnInit {
   private id: any;
-  public pieChartLabels = ["Freshmen", "Sophomores", "Juniors", "Seniors"];
+  public pieChartLabels = [
+    "Freshmen",
+    "Sophomores",
+    "Juniors",
+    "Seniors",
+    "Graduate"
+  ];
   public pieChartData = [];
   public pieChartType = "pie";
   public doneLoading = false;
   public doc: any;
   public attended: any;
-  public eventName: any;
+  public event: any;
   public eventNameLoaded = false;
+  public fields: any;
   public colors = ["#FD1F5E", "#1EF9A1", "#7FFD1F", "#68F000"];
   constructor(
     public sharedData: SharedDataService,
     private userService: UserService,
-    private router: Router,
     private route: ActivatedRoute,
-    private event: EventService
+    private eventService: EventService
   ) {}
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
     if (this.id != null) {
-      this.event
+      this.eventService
         .getEventName(this.id)
         .toPromise()
-        .then(eventName => {
-          this.eventName = eventName.body;
+        .then(event => {
+          this.event = event.body;
           this.eventNameLoaded = true;
+          this.eventService
+            .getCheckInResponses(this.id)
+            .toPromise()
+            .then(responses => {
+              this.fields = responses.body;
+              console.log(this.fields);
+
+            });
           this.userService
             .getEventMemberAnalytics(this.id)
             .toPromise()
@@ -48,6 +61,7 @@ export class EventAnalyticsComponent implements OnInit {
               var sophomore;
               var junior;
               var senior;
+              var graduate;
               if (doc["freshman"].attended == undefined) {
                 freshman = 0;
               } else {
@@ -68,8 +82,19 @@ export class EventAnalyticsComponent implements OnInit {
               } else {
                 senior = doc["senior"].attended.length;
               }
+              if (doc["graduate"].attended == undefined) {
+                graduate = 0;
+              } else {
+                graduate = doc["graduate"].attended.length;
+              }
 
-              this.pieChartData = [freshman, sophomore, junior, senior];
+              this.pieChartData = [
+                freshman,
+                sophomore,
+                junior,
+                senior,
+                graduate
+              ];
             })
             .catch(err => {});
         });

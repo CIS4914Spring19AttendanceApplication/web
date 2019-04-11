@@ -1,31 +1,30 @@
-<fmyp-dashboard-header [title]="sharedData.eventsTitle" [description]="sharedData.eventsDesc" ></fmyp-dashboard-header>
+<fmyp-dashboard-header [title]="sharedData.eventsTitle" [description]="sharedData.eventsDesc"></fmyp-dashboard-header>
 <div class="row" style="padding-left: 5em; padding-right:5em;">
-<div class="row">
-	<button type="button" href="#" routerLink="/dashboard/events/create" class="btn btn-success btn-lg" style="margin:15px;">Create Event</button>
-</div>
+    <div class="row">
+        <button type="button" href="#" routerLink="/dashboard/events/create" class="btn btn-success btn-lg" style="margin:15px;">Create Event</button>
+    </div>
 
-<div class="row">
-	<div class="col-6" style="padding-bottom: 20px;" *ngFor="let event of events">
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title">{{event.name}}</h5>
-				<p class="card-text">
-					Some quick example text to build on the card title and make up the
-					bulk of the card's content.
-				</p>
-				<div class="row">
-					<div class="col">
-						<button class="btn btn-outline-success btn-block" (click)="openEventQRView(event)" >Check In (QR)</button>
-					</div>
-							<div class="col">
-						<button class="btn btn-outline-success btn-block" (click)="openEventQRView(event)" >Toggle Attendance</button>
-					</div>
-					<div class="col">
-						<button class="btn btn-outline-success btn-block" (click)="openDialog(org)" >Edit</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="row">
+        <div class="col-6" style="padding-bottom: 20px;" *ngFor="let event of events">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.name}}</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-success btn-block" (click)="openEventQRView(event)">Check In (QR)</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-block" [ngClass]="{'btn-outline-danger': event.attendance_toggle==false, 'btn-outline-success': event.attendance_toggle==true}" (click)="toggleAttendance(event)">Attendance {{event.attendance_toggle ? 'On' : 'Off'}}</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-outline-success btn-block" (click)="openDialog(org)">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
