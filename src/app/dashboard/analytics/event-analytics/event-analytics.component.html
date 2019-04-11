@@ -58,8 +58,7 @@
     <h3 style="padding-top: 25px;">Year Breakdown</h3>
 
     <div style="display: block">
-        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
-    </div>
+        <canvas *ngIf="chartDataLoaded" baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas> </div>
 
 
 </div>

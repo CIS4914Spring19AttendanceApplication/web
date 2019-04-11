@@ -11,6 +11,11 @@ import { UserService } from "src/app/api/user.service";
 })
 export class EventAnalyticsComponent implements OnInit {
   private id: any;
+  
+
+  // public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
+  // public pieChartData = [120, 150, 180, 90];
+  // public pieChartType = 'pie';
   public pieChartLabels = [
     "Freshmen",
     "Sophomores",
@@ -26,7 +31,8 @@ export class EventAnalyticsComponent implements OnInit {
   public event: any;
   public eventNameLoaded = false;
   public fields: any;
-  public colors = ["#FD1F5E", "#1EF9A1", "#7FFD1F", "#68F000"];
+  public chartDataLoaded = false;
+
   constructor(
     public sharedData: SharedDataService,
     private userService: UserService,
@@ -49,7 +55,6 @@ export class EventAnalyticsComponent implements OnInit {
             .then(responses => {
               this.fields = responses.body;
               console.log(this.fields);
-
             });
           this.userService
             .getEventMemberAnalytics(this.id)
@@ -95,6 +100,7 @@ export class EventAnalyticsComponent implements OnInit {
                 senior,
                 graduate
               ];
+              this.chartDataLoaded = true;
             })
             .catch(err => {});
         });
