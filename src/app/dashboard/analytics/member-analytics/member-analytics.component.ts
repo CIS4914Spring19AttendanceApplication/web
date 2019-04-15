@@ -12,6 +12,8 @@ export class MemberAnalyticsComponent implements OnInit {
   chartDataLoaded: boolean;
   cats: any;
   catsLength: any;
+  public firstName: any;
+  public lastName: any;
 
   constructor(private route: ActivatedRoute, public sharedData: SharedDataService, private userService: UserService) { }
   id: any;
@@ -61,6 +63,15 @@ export class MemberAnalyticsComponent implements OnInit {
       })
       .catch(err => {
 
+      });
+      this.userService.getProfile(this.id)
+      .toPromise()
+      .then(docs=>{
+        this.firstName = docs['first_name'];
+        this.lastName = docs['last_name'];
+      })
+      .catch(err=>{
+        console.log(err);
       });
     }
   }
