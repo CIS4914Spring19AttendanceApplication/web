@@ -18,8 +18,8 @@ export class MemberAnalyticsComponent implements OnInit {
   point_status: any;
   events: any;
   public pieChartLabels = [
-    "Attended",
-    "Missed"
+    "Current Points",
+    "Points Needed"
   ];
   public pies = [];
   public pieChartType = "pie";
@@ -38,9 +38,18 @@ export class MemberAnalyticsComponent implements OnInit {
             this.events = doc[count].events;
             this.cats = doc[count].point_status;
             for(var i = 0; i < this.cats.length; i++){
+              var neededPoints;
+              var totalPoints = this.cats[i].total_points;
+              var currentPoints = this.cats[i].current_points;
+              if((totalPoints - currentPoints) < 0){
+                neededPoints = 0;
+              }
+              else {
+                neededPoints = totalPoints - currentPoints;
+              }
               this.pies.push({
                 name: this.cats[i].category,
-                data: [this.cats[i].current_points, this.cats[i].total_points - this.cats[i].current_points]
+                data: [this.cats[i].current_points, neededPoints]
               });
             }
            
