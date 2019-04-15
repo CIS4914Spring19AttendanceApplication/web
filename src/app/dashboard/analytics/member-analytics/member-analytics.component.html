@@ -1,0 +1,54 @@
+<fmyp-dashboard-header [title]="sharedData.memberAnalyticsTitle" [description]="sharedData.memberAnalyticsDesc"></fmyp-dashboard-header>
+<div class="container">
+    <div class="row mb-5">
+        <button class="btn btn-xs btn-outline-primary" (click)="pdf.saveAs('invoice.pdf')">Export to PDF</button>
+    </div>
+    <kendo-pdf-export #pdf margin="1in" paperSize="Letter" landscape="true">
+        <div class="row">
+            <h3>Attended Events</h3>
+            <div class="col-12" style="padding-bottom: 20px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col ">Name</th>
+                            <th scope="col ">Date</th>
+                            <th scope="col ">Location</th>
+                            <th scope="col ">Point Categories</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of events ">
+                            <td>{{event.name}}</td>
+                            <td>{{event.date | date }} {{event.date | date:'shortTime' }}</td>
+                            <td>{{event.location}}</td>
+                            <td>
+                                <div *ngFor="let cat of event.point_categories">
+                                    <h6><span class="badge badge-secondary">{{cat.name}}</span></h6>
+                                </div>
+                                <div *ngIf="event.point_categories.length == 0">
+                                    N/A
+                                </div>
+                            </td>
+                            <!-- <td>
+                                <div *ngFor="let cat of event.point_categories">{{cat}}</div>
+                            </td> -->
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <h3>Point Status</h3>
+            <div class="row mt-3">
+                <div class="col-4 mb-3" *ngFor="let pie of pies">
+                    <div style="display: block; text-align: center;">
+                        <h6>{{pie.name}}</h6>
+                        <canvas *ngIf="chartDataLoaded" baseChart [data]="pie.data" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas> </div>
+                </div>
+            </div>
+
+        </div>
+    </kendo-pdf-export>
+</div>

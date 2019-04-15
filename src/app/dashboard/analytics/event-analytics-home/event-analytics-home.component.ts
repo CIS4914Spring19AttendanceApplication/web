@@ -4,11 +4,11 @@ import { EventService } from 'src/app/api/event.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'fmyp-analytics-home',
-  templateUrl: './analytics-home.component.html',
-  styleUrls: ['./analytics-home.component.css']
+  selector: 'fmyp-event-analytics-home',
+  templateUrl: './event-analytics-home.component.html',
+  styleUrls: ['./event-analytics-home.component.css']
 })
-export class AnalyticsHomeComponent implements OnInit {
+export class EventAnalyticsHomeComponent implements OnInit {
 
   constructor(public sharedData: SharedDataService, private eventService: EventService, private router: Router) { }
 

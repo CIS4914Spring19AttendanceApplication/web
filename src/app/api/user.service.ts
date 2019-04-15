@@ -57,4 +57,12 @@ export class UserService {
   public getEventMemberAnalytics(eventID) {
     return this.http.get(this.baseUserURL + 'get/byevent/' + eventID);
   }
+
+  public getUsersByOrg(orgID) {
+    return this.http.get(this.baseUserURL+ "get/byorg/"+orgID);
+  }
+
+  public getUserHistory(email){
+    return this.http.get(this.baseUserURL+ 'history/' + email);
+  }
 }

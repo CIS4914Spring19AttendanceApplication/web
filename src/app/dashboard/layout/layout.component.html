@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" routerLink="/dashboard" href="#">RollCall {{orgName}}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -11,8 +11,14 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/dashboard/organizations">Organizations</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard/analytics">Analytics</a>
+            <li ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Analytics
+        </a>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" routerLink="/dashboard/analytics/event">Event Analytics</a>
+                    <a class="dropdown-item" routerLink="/dashboard/analytics/member">Member Analytics</a>
+                </div>
             </li>
             <!-- <li class="nav-item">
           <a class="nav-link" href="#">About</a>

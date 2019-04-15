@@ -22,8 +22,11 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from "@agm/core";
 import { ViewEventQrComponent } from './event/view-event-qr/view-event-qr.component';
 import { EventAnalyticsComponent } from './analytics/event-analytics/event-analytics.component';
-import { AnalyticsHomeComponent } from './analytics/analytics-home/analytics-home.component';
+import { EventAnalyticsHomeComponent } from './analytics/event-analytics-home/event-analytics-home.component';
 import { ChartsModule } from 'ng2-charts';
+import { MemberAnalyticsHomeComponent } from './analytics/member-analytics-home/member-analytics-home.component';
+import { MemberAnalyticsComponent } from './analytics/member-analytics/member-analytics.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 
 @NgModule({
   declarations: [
@@ -39,16 +42,20 @@ import { ChartsModule } from 'ng2-charts';
     OrgEnrollDialog,
     ViewEventQrComponent,
     EventAnalyticsComponent,
-    AnalyticsHomeComponent
+    EventAnalyticsHomeComponent,
+    MemberAnalyticsHomeComponent,
+    MemberAnalyticsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(dashboardRoutes),
     FormsModule,
     MatDialogModule,
+    NgbModule,
     BrowserAnimationsModule,
     NgbModule,
     GooglePlaceModule,
+    PDFExportModule,
     ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBeJeprKc32pOu3u4gcvUCkVV_CEYnqO5Y"

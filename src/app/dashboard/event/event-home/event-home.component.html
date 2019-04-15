@@ -19,9 +19,9 @@
                         <div class="col">
                             <button class="btn btn-block" [ngClass]="{'btn-outline-danger': event.attendance_toggle==false, 'btn-outline-success': event.attendance_toggle==true}" (click)="toggleAttendance(event)">Attendance {{event.attendance_toggle ? 'On' : 'Off'}}</button>
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <button class="btn btn-outline-success btn-block" (click)="openDialog(org)">Edit</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

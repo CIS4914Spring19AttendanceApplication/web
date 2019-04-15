@@ -19,8 +19,10 @@ export class SharedDataService {
   public activeOrgID: string;
   //public eventsDesc = 'Create, edit or view your events for ' + this.activeOrg + '.';
   public eventsDesc = 'Create, edit or view your events.';
-  public aTitle = 'Analytics';
-  public aDesc = 'View analytics for your events and members';
+  public eventAnalyticsTitle = 'Event Analytics';
+  public eventAnalyticsDesc = 'View analytics for your events.';
+  public memberAnalyticsTitle = 'Member Analytics';
+  public memberAnalyticsDesc = 'View analytics for your members.';
 
   
 

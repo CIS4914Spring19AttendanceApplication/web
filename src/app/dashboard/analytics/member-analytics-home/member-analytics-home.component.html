@@ -1,0 +1,49 @@
+<fmyp-dashboard-header [title]="sharedData.memberAnalyticsTitle" [description]="sharedData.memberAnalyticsDesc"></fmyp-dashboard-header>
+<div class="container">
+    <div class="row mb-5">
+        <button class="btn btn-xs btn-outline-primary" (click)="pdf.saveAs('invoice.pdf')">Export to PDF</button>
+    </div>
+    <div class="row">
+        <div class="col-12" style="padding-bottom: 20px;">
+            <kendo-pdf-export #pdf margin="2cm" paperSize="Letter" landscape="true">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col ">First</th>
+                            <th scope="col ">Last</th>
+                            <th scope="col ">Year</th>
+                            <th scope="col ">Phone</th>
+                            <th scope="col ">Email</th>
+
+                            <th scope="col "></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let member of memberInfo ">
+                            <td>{{member.first_name}}</td>
+                            <td>{{member.last_name}}</td>
+                            <td>{{member.year}}</td>
+                            <td>{{member.email}}</td>
+                            <td>{{member.phone}}</td>
+                            <td><a (click)="openMemberAnalytics(member)">View</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </kendo-pdf-export>
+            <!-- <div class="card-body ">
+                    <h5 class="card-title ">{{member.first_name}} {{member.last_name}}</h5>
+                    <p class="card-text ">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                    <div class="row ">
+                        <div class="col ">
+                            <button class="btn btn-outline-primary btn-block " (click)="openEventAnalytics(event) ">View Analytics</button>
+        </div>
+
+    </div>
+</div> -->
+        </div>
+    </div>
+</div>
