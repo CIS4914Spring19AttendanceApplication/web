@@ -1,9 +1,19 @@
-<fmyp-dashboard-header [title]="sharedData.eventsTitle" [description]="sharedData.eventsDesc"></fmyp-dashboard-header>
+<!-- <fmyp-dashboard-header [title]="sharedData.eventsTitle" [description]="sharedData.eventsDesc"></fmyp-dashboard-header>
 <div class="row" style="padding-left: 5em; padding-right:5em;">
     <div class="row">
         <button type="button" href="#" routerLink="/dashboard/events/create" class="btn btn-success btn-lg" style="margin:15px;">Create Event</button>
     </div>
 
+    <div class="row">
+
+    </div>
+</div> -->
+
+<fmyp-dashboard-header [title]="sharedData.eventsTitle" [description]="sharedData.eventsDesc"></fmyp-dashboard-header>
+<div style="padding-left: 5em; padding-right:5em;">
+    <div class="row">
+        <button routerLink="/dashboard/events/create" class="btn btn-success btn-lg" style="margin:15px;">Create Event</button>
+    </div>
     <div class="row">
         <div class="col-6" style="padding-bottom: 20px;" *ngFor="let event of events">
             <div class="card">
@@ -19,12 +29,11 @@
                         <div class="col">
                             <button class="btn btn-block" [ngClass]="{'btn-outline-danger': event.attendance_toggle==false, 'btn-outline-success': event.attendance_toggle==true}" (click)="toggleAttendance(event)">Attendance {{event.attendance_toggle ? 'On' : 'Off'}}</button>
                         </div>
-                        <!-- <div class="col">
-                            <button class="btn btn-outline-success btn-block" (click)="openDialog(org)">Edit</button>
-                        </div> -->
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>

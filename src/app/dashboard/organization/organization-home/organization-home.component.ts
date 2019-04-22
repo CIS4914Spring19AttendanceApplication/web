@@ -77,6 +77,10 @@ export class OrganizationHomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.sharedData.orgCreated){
+      location.reload();
+      this.sharedData.orgCreated = false;
+    }
     this.user
       .getBoardEnrollments(this.sharedData.email)
       .toPromise()

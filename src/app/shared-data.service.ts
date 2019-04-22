@@ -23,6 +23,7 @@ export class SharedDataService {
   public eventAnalyticsDesc = 'View analytics for your events.';
   public memberAnalyticsTitle = 'Member Analytics';
   public memberAnalyticsDesc = 'View analytics for your members.';
+  public orgCreated = false;
 
   
 

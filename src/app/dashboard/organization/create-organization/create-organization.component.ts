@@ -49,6 +49,7 @@ export class CreateOrganizationComponent implements OnInit {
       .createEvent(this.formBody)
       .toPromise()
       .then(response => {
+        this.sharedData.orgCreated = true;
         this.router.navigate(["/dashboard/organizations"]);
       })
       .catch(err => {

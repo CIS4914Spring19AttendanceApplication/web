@@ -11,6 +11,7 @@ import { EventAnalyticsComponent } from './analytics/event-analytics/event-analy
 import { EventAnalyticsHomeComponent } from './analytics/event-analytics-home/event-analytics-home.component';
 import { MemberAnalyticsHomeComponent } from './analytics/member-analytics-home/member-analytics-home.component';
 import { MemberAnalyticsComponent } from './analytics/member-analytics/member-analytics.component';
+import { RefreshComponent } from './organization/refresh/refresh.component';
 
 export const dashboardRoutes: Routes = [
   {
@@ -22,6 +23,7 @@ export const dashboardRoutes: Routes = [
       { path: "profile", component: ProfileComponent },
       { path: "organizations", component: OrganizationHomeComponent },
       { path: "organizations/create", component: CreateOrganizationComponent },
+      { path: "organizations/refresh", component: RefreshComponent },
       { path: "events", component: EventHomeComponent },
       { path: "events/create", component: CreateEventComponent },
       { path: "events/view/:id", component: ViewEventComponent },

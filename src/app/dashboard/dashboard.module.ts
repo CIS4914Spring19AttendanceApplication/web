@@ -27,6 +27,7 @@ import { ChartsModule } from 'ng2-charts';
 import { MemberAnalyticsHomeComponent } from './analytics/member-analytics-home/member-analytics-home.component';
 import { MemberAnalyticsComponent } from './analytics/member-analytics/member-analytics.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { RefreshComponent } from './organization/refresh/refresh.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
     EventAnalyticsComponent,
     EventAnalyticsHomeComponent,
     MemberAnalyticsHomeComponent,
-    MemberAnalyticsComponent
+    MemberAnalyticsComponent,
+    RefreshComponent
   ],
   imports: [
     CommonModule,
